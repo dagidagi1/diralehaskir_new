@@ -854,7 +854,7 @@ void validCreditCard(landlord* l, date* d, int trv_index, ad* a) {
 		if (!isStringAllDig(buffer)) flag = true;
 		if (flag) cout << "Incorrect input, try again." << endl;
 	} while (flag);
-	
+
 	//expiary dates
 	do {
 		flag = false;
@@ -872,7 +872,7 @@ void validCreditCard(landlord* l, date* d, int trv_index, ad* a) {
 			cout << "invalid date, please try again." << endl;
 		}
 	} while (flag);
-	
+
 	//cvv
 	do {
 		flag = false;
@@ -911,7 +911,7 @@ void orderConfirmation(landlord* l, date* d, ad* a, int trv_index)
 	int total = 0;
 	if (!difference_of_days(d->fromDay, d->fromMonth, d->fromYear, d->toDay, d->toMonth, d->toYear))
 		total = 1 * (a->price - a->discount);
-	else 
+	else
 		total = difference_of_days(d->fromDay, d->fromMonth, d->fromYear, d->toDay, d->toMonth, d->toYear) * (a->price - a->discount);
 
 	system("CLS");
@@ -998,7 +998,7 @@ void travelerMenu(int trv_index)
 		case 2://sort by dates.
 			if (!ads_arr_size) // no ads qualified previous filters
 				cout << "No ads with the previous filters match your description." << endl
-					<< "Clear all filters and try again." << endl;
+				<< "Clear all filters and try again." << endl;
 			else {
 				chosenDates = sortAdsByDate();
 				res = printAndChooseFromAdArr();
@@ -1010,7 +1010,7 @@ void travelerMenu(int trv_index)
 		case 3://sort by location.
 			if (!ads_arr_size) // no ads qualified previous filters
 				cout << "No ads with the previous filters match your description." << endl
-					<< "Clear all filters and try again." << endl;
+				<< "Clear all filters and try again." << endl;
 			else {
 				searchAds();
 				res = printAndChooseFromAdArr();//prints all ads
@@ -1022,7 +1022,7 @@ void travelerMenu(int trv_index)
 			if (!ads_arr_size) // no ads qualified previous filters
 				cout << "No ads with the previous filters match your description." << endl
 				<< "Clear all filters and try again." << endl;
-			else{
+			else {
 				filterAds();
 				res = printAndChooseFromAdArr();//prints all ads
 				if (res != NOT_FOUND)
@@ -1048,7 +1048,7 @@ void travelerMenu(int trv_index)
 			printFaq();
 			break;
 		case 8://Support.
-			if (!support) 
+			if (!support)
 			{
 				printSupport();
 				support = true;
@@ -1057,7 +1057,7 @@ void travelerMenu(int trv_index)
 			break;
 		case 9://Rate.
 			rateProperty(trv_index);
-				break;
+			break;
 		case 0://exit
 			system("CLS");
 			cout << "THANK YOU! Logging out..." << endl;
@@ -1110,7 +1110,7 @@ void placeOrder(ad* a, date& d, int trv_index) {
 	}
 	if (isDateInitialized(d)) //if date was not set
 		d = validDateInput(); //set date
-	
+
 	for (int i = 0; i < a->dateSize; ++i) {//if dates unavilable
 		if (!isDateAvailable(d, a->occupied[i])) {
 			cout << "these dates are occupied, please try again." << endl;
@@ -1283,7 +1283,7 @@ bool isDateEqual(date& d, date& adDate) {//--------------------------
 	return false;//dates aren't equal
 }
 
-string strToLower(string a) 
+string strToLower(string a)
 {	//converts entire string to lowerCase
 	for (int i = 0; i < a.length(); ++i)
 		a[i] = tolower(a[i]);
@@ -1482,7 +1482,7 @@ int travelerSignIn() {
 	}
 	if (tempPass != travelers_arr[index].password) {//password equal
 		cout << "Incorrect password...try again." << endl;
-		return not NOT_FOUND;
+		return NOT_FOUND;
 	}
 	return index;
 }
@@ -1710,10 +1710,12 @@ void MainPage()
 		{
 		case 1:
 			traveler_index = travelerSignIn();
+			if (traveler_index == NOT_FOUND) break;
 			travelerMenu(traveler_index);
 			break;
 		case 2:
 			landlord_index = landlordSignIn();
+			if (landlord_index == NOT_FOUND) break;
 			traveler_index = findTravelerByName(travelers_arr[landlord_index].fullName);
 			LandlordsLoginMenu(landlord_index, traveler_index);
 			break;

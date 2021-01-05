@@ -1,0 +1,5 @@
+﻿  diralehaskir.cpp
+c:\users\dagi\source\repos\diralehaskir_new\diralehaskir new\diralehaskir.cpp(684): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+c:\users\dagi\source\repos\diralehaskir_new\diralehaskir new\diralehaskir.cpp(909): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\dagi\source\repos\diralehaskir_new\diralehaskir new\diralehaskir.cpp(937): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  diralehaskir new.vcxproj -> C:\Users\Dagi\Source\Repos\diralehaskir_new\x64\Debug\diralehaskir new.exe
