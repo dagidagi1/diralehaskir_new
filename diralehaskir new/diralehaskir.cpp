@@ -1355,6 +1355,7 @@ void Register()
 		//update db
 		system("CLS");
 		cout << "Landlord successfuly added!" << endl;
+		printToFile();
 	}
 	else if (choise == 2)
 	{
@@ -1362,6 +1363,7 @@ void Register()
 		//update db
 		system("CLS");
 		cout << "Traveler added successfuly!" << endl;
+		printToFile();
 	}
 	else if (choise == 3) return;
 	else cout << "Wrong choice!!" << endl;
@@ -1634,10 +1636,14 @@ string ValidId()
 	{
 		cout << "Please enter id(9 digits): ";
 		cin >> id;
-		has_only_digits = true;
-		for (int i = 0; i < id.length(); i++)
-			if (!isdigit(id[i])) has_only_digits = false;
-		if (!has_only_digits) cout << "Wrong id! Please try again!" << endl;
+		if (id.length() != MAX_ID) cout << "Wrong id! Please try again!" << endl;
+		else
+		{
+			has_only_digits = true;
+			for (int i = 0; i < id.length(); i++)
+				if (!isdigit(id[i])) has_only_digits = false;
+			if (!has_only_digits) cout << "Wrong id! Please try again!" << endl;
+		}
 	}
 	return id;
 }
@@ -1769,6 +1775,7 @@ void LandlordsMenu(int index)
 	while (choise != 4)
 	{
 		system("CLS");
+		readFromFile();
 		cout << "***LANDLORD - MENU***" << endl;
 		cout << "Total profit: " << landlord_arr[index].sumOfDeals << endl;
 		if (landlord_arr[index].adSize)
@@ -1792,19 +1799,19 @@ void LandlordsMenu(int index)
 			cout << "Please enter ad number: ";
 			input = ValidInput(1, landlord_arr[index].adSize) - 1;
 			EditAdMenu(index, input);
-			//update db
+			printToFile();
 			break;
 		case 2:
 			RealocateAdsPointer(index);
 			landlord_arr[index].properties[landlord_arr[index].adSize - 1] = NewAd();
 			landlord_arr[index].properties[landlord_arr[index].adSize - 1].email = landlord_arr[index].email;
-			//update db
+			printToFile();
 			break;
 		case 3:
 			cout << "Please enter ad number: ";
 			input = ValidInput(1, landlord_arr[index].adSize) - 1;
 			DeleteAd(index, input);
-			//update db
+			printToFile();
 			break;
 		case 4:
 			//exit
